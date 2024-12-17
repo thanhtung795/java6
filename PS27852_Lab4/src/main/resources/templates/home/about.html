@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/layout :: dynamic(~{::body})}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+<body>
+
+
+<div class="container mt-4">
+	<!-- Nội dung chính -->
+	<h3 th:text="#{about.title}" class="text-center my-3"></h3>
+	<p th:text="#{about.content}" class="lead text-center"></p>
+</div>
+
+</body>
+</html>

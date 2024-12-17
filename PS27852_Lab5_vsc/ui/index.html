@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thông tin sinh viên</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+  </head>
+  <body ng-controller="MyCtrl" class="p-4">
+    <div class="container-fiuld">
+      <div class="row">
+        <!-- Form nhập thông tin sinh viên -->
+        <div class="col-md-6">
+          <h2>Form nhập thông tin sinh viên ở visual studio</h2>
+          <form name="studentForm">
+            <!-- Name -->
+            <div class="form-group">
+              <label for="name">Tên:</label>
+              <input
+                type="text"
+                id="name"
+                class="form-control"
+                ng-model="student.fullname"
+                required
+              />
+            </div>
+            <!-- Gender (Radio) -->
+            <div class="form-group">
+              <label>Giới tính:</label>
+              <div>
+                <label class="radio-inline mr-2">
+                  <input
+                    type="radio"
+                    ng-model="student.gender"
+                    ng-value="true"
+                  />
+                  Nam
+                </label>
+                <label class="radio-inline">
+                  <input
+                    type="radio"
+                    ng-model="student.gender"
+                    ng-value="false"
+                  />
+                  Nữ
+                </label>
+              </div>
+            </div>
+            <!-- Email -->
+            <div class="form-group">
+              <label for="email">Email:</label>
+              <input
+                type="email"
+                id="email"
+                class="form-control"
+                ng-model="student.email"
+                required
+              />
+            </div>
+
+            <!-- Marks -->
+            <div class="form-group">
+              <label for="marks">Điểm:</label>
+              <input
+                type="number"
+                id="marks"
+                class="form-control"
+                ng-model="student.marks"
+                min="0"
+                max="10"
+                step="0.1"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="country">Quốc gia:</label>
+              <select
+                id="country"
+                class="form-control"
+                ng-model="student.country"
+              >
+                <option value="US">United States</option>
+                <option value="CA">Canada</option>
+                <option value="VN">Việt Nam</option>
+                <option value="AU">Australia</option>
+              </select>
+            </div>
+
+            <div class="row">
+              <!-- Submit -->
+              <button
+                type="button"
+                class="btn btn-primary mx-2"
+                ng-click="addStudent(student)"
+              >
+                Thêm Sinh Viên
+              </button>
+              <!-- Reset Button -->
+              <button
+                type="button"
+                class="btn btn-secondary mx-2"
+                ng-click="reset()"
+              >
+                Reset
+              </button>
+              <!-- Button Cap Nhat -->
+              <button
+                type="button"
+                class="btn btn-success mx-2"
+                ng-click="updateStudent(student)"
+              >
+                Cập Nhật
+              </button>
+            </div>
+          </form>
+        </div>
+        <!-- Bảng hiển thị thông tin sinh viên -->
+        <div class="col-md-6">
+          <h2>Danh sách sinh viên</h2>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Tên</th>
+                <th>Giới tính</th>
+                <th>Email</th>
+                <th>Điểm</th>
+                <th>Quốc gia</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="student in students">
+                <td>{{ student.email }}</td>
+                <td>{{ student.fullname }}</td>
+                <td>{{ student.marks }}</td>
+                <td>{{ student.gender ? 'Nam' : 'Nữ' }}</td>
+                <td>{{ student.country }}</td>
+                <td>
+                  <button
+                    class="btn btn-warning"
+                    ng-click="editStudent(student.email)"
+                  >
+                    Sửa
+                  </button>
+                </td>
+                <td>
+                  <button
+                    class="btn btn-danger"
+                    ng-click="deleteStudent(student.email)"
+                  >
+                    Xóa
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="../js/app.js"></script>
+  </body>
+</html>

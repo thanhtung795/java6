@@ -1,0 +1,13 @@
+{
+	"name": "Nguyễn Ngọc Minh Thuận",
+	"gender": true,
+	"marks": 9.5,
+	"contact": {
+		"email": "thuannnmps26548@fpt.edu.vn",
+		"phone": "0971123456"
+	},
+	"subjects": [
+		"SOF306",
+		"PDP201"
+	]
+}

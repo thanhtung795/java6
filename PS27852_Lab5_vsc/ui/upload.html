@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Upload Excel File</title>
+    <!-- Import AngularJS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <!-- Import ExcelJS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/4.3.0/exceljs.min.js"></script>
+  </head>
+  <body ng-controller="MyCtrl">
+    <h1>Upload Excel File</h1>
+
+    <!-- Input chọn file -->
+    <input
+      type="file"
+      id="fileInput"
+      accept=".xlsx, .xls"
+      onchange="angular.element(this).scope().uploadFile(this.files)"
+    />
+    <br />
+
+    <!-- Nút gửi dữ liệu lên API -->
+    <button ng-click="uploadData()">Upload to Server</button>
+
+    <!-- Kết quả xử lý -->
+    <p style="margin-top: 10px; color: red;" ng-show="errorMessage">{{ errorMessage }}</p>
+    <p style="margin-top: 10px; color: green;" ng-show="successMessage">{{ successMessage }}</p>
+
+    <script>
+      var app = angular.module("myApp", []);
+
+      app.controller("MyCtrl", function ($scope, $http) {
+        const api = "http://localhost:8080/api/students"; // API để gửi dữ liệu
+        $scope.students = []; // Lưu trữ dữ liệu từ file Excel
+        $scope.errorMessage = "";
+        $scope.successMessage = "";
+
+        // Hàm xử lý file khi được chọn
+        $scope.uploadFile = async function (files) {
+          if (!files || files.length === 0) {
+            $scope.errorMessage = "Vui lòng chọn một file Excel!";
+            $scope.successMessage = "";
+            $scope.$apply();
+            return;
+          }
+
+          const file = files[0];
+          const reader = new FileReader();
+
+          reader.onload = async function (e) {
+            try {
+              const workbook = new ExcelJS.Workbook();
+              await workbook.xlsx.load(e.target.result); // Đọc file Excel
+              const worksheet = workbook.getWorksheet(1); // Lấy sheet đầu tiên
+
+              // Xử lý từng dòng trong file Excel
+              worksheet.eachRow((row, index) => {
+                if (index > 1) {
+                  // Chỉ xử lý từ dòng 2 (bỏ header)
+                  const student = {
+                    email: row.getCell(1).value, // Cột 1: Email
+                    fullname: row.getCell(2).value, // Cột 2: Fullname
+                    marks: parseFloat(row.getCell(3).value), // Cột 3: Marks
+                    gender: row.getCell(4).value === "true", // Cột 4: Gender
+                    country: row.getCell(5).value, // Cột 5: Country
+                  };
+                  $scope.students.push(student);
+                }
+              });
+
+              console.log("Dữ liệu từ file Excel:", $scope.students);
+              $scope.successMessage = "Đọc file Excel thành công!";
+              $scope.errorMessage = "";
+              $scope.$apply(); // Cập nhật view
+            } catch (err) {
+              $scope.errorMessage = "Có lỗi khi xử lý file Excel. Vui lòng thử lại!";
+              $scope.successMessage = "";
+              $scope.$apply();
+            }
+          };
+
+          reader.readAsArrayBuffer(file); // Đọc file Excel
+        };
+
+        // Hàm upload dữ liệu lên server
+        $scope.uploadData = function () {
+          if ($scope.students.length === 0) {
+            alert("Không có dữ liệu để upload. Vui lòng chọn file Excel trước!");
+            return;
+          }
+
+          // Gửi từng sinh viên lên API
+          $scope.students.forEach((student) => {
+            $http
+              .post(api, student)
+              .then((response) => {
+                console.log("Thêm thành công:", response.data);
+              })
+              .catch((error) => {
+                console.error("Lỗi khi thêm dữ liệu:", error);
+              });
+          });
+
+          alert("Dữ liệu đã được upload!");
+        };
+      });
+    </script>
+  </body>
+</html>

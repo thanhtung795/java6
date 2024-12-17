@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:fragment="dynamic(view)">
+<head>
+<meta charset="UTF-8">
+<title>Tổ chức layout</title>
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+	<hr>
+	<nav th:insert="~{/layout/_menu.html :: navbar}"></nav>
+	<hr>
+	<main th:replace="${view}"></main>
+	<!-- Footer -->
+	<footer class="mt-5">
+		<p>FPT Polytechnic &copy; 2024. All rights reserved.</p>
+	</footer>
+
+	<!-- Bootstrap JavaScript -->
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

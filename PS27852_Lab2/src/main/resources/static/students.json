@@ -1,0 +1,42 @@
+[
+	{
+		"name": "Trần Văn An",
+		"gender": true,
+		"marks": 9.5,
+		"contact": {
+			"email": "anvt26548@fpt.edu.vn",
+			"phone": "0971123456"
+		},
+		"subjects": [
+			"SOF306",
+			"PDP201"
+		]
+	},
+	{
+		"name": "Lê Thị Thu Hằng",
+		"gender": false,
+		"marks": 8.5,
+		"contact": {
+			"email": "hangltt26910@fpt.edu.vn",
+			"phone": "0971123451"
+		},
+		"subjects": [
+			"SOF306",
+			"PDP201",
+			"COM108"
+		]
+	},
+	{
+		"name": "Nguyễn Tuấn Anh",
+		"gender": true,
+		"marks": 10.0,
+		"contact": {
+			"email": "anhtt26920@fpt.edu.vn",
+			"phone": "0971123452"
+		},
+		"subjects": [
+			"SOF306",
+			"COM108"
+		]
+	}
+]

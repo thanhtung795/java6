@@ -1,0 +1,13 @@
+{
+	"name": "Võ Thanh Tùng",
+	"gender": true,
+	"marks": 9.5,
+	"contact": {
+		"email": "tungvt26548@fpt.edu.vn",
+		"phone": "0971123456"
+	},
+	"subjects": [
+		"SOF306",
+		"PDP201"
+	]
+}

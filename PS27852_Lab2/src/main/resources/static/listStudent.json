@@ -1,0 +1,32 @@
+[
+	{
+		"name": "Lê Thị Thu Hằng",
+		"gender": false,
+		"marks": 7.0,
+		"email": "hangltt26910@fpt.edu.vn"
+	},
+	{
+		"name": "Nguyễn Văn Nam",
+		"gender": true,
+		"marks": 5.0,
+		"email": "namnvps26500@fpt.edu.vn"
+	},
+	{
+		"name": "Lê Minh Đức",
+		"gender": true,
+		"marks": 6.0,
+		"email": "ducmlps26800@fpt.edu.vn"
+	},
+	{
+		"name": "Vũ Thị Mai Lan",
+		"gender": false,
+		"marks": 8.0,
+		"email": "lanvtm26950@fpt.edu.vn"
+	},
+	{
+		"name": "Nguyễn Tuấn Anh",
+		"gender": true,
+		"marks": 9.0,
+		"email": "anhtt26920@fpt.edu.vn"
+	}
+]

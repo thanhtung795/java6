@@ -1,0 +1,13 @@
+package com.jv6.lab3;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class J6Ps26548NguyenNgocMinhThuanLab3Application {
+
+	public static void main(String[] args) {
+		SpringApplication.run(J6Ps26548NguyenNgocMinhThuanLab3Application.class, args);
+	}
+
+}

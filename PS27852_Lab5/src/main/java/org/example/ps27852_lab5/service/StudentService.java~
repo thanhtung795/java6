@@ -1,0 +1,13 @@
+package org.example.ps27852_lab5.service;
+
+
+import org.example.ps27852_lab5.entity.Student;
+
+import java.util.List;
+
+public interface StudentService {
+    List<Student> getAllStudents();
+    Student getStudentByEmail(String email);
+    Student addStudent(Student student);
+    void deleteStudent(String email);
+}

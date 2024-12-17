@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/layout :: dynamic(~{::body})}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<div class="container mt-4">
+	<!-- Nội dung chính -->
+	<h3 th:text="#{home.title}" class="text-center my-3">TRANG CHỦ</h3>
+	<p th:text="#{home.content}" class="lead text-center">Đây là trang chủ</p>
+</div>
+
+</body>
+</html>

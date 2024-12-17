@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Student Form</title>
+	<style type="text/css">
+		i {
+			color: red;
+			font-size: 0.9em;
+		}
+		.form-container {
+			max-width: 400px;
+			margin: 0 auto;
+			padding: 20px;
+			background-color: #f8f9fa;
+			border: 1px solid #dee2e6;
+			border-radius: 8px;
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+		}
+	</style>
+</head>
+<body>
+
+<div class="container mt-5">
+	<h3 class="text-center">Student Form</h3>
+
+	<div th:text="${message}" class="alert alert-info text-center" role="alert"></div>
+
+	<div class="form-container">
+		<form th:object="${student}" th:action="@{/student/create}" method="post">
+			<div class="form-group">
+				<label>Email</label>
+				<input th:field="*{email}" type="email" class="form-control" placeholder="Email">
+				<i th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="form-text"></i>
+			</div>
+
+			<div class="form-group">
+				<label>Full Name</label>
+				<input th:field="*{name}" type="text" class="form-control" placeholder="Full Name">
+				<i th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="form-text"></i>
+			</div>
+
+			<div class="form-group">
+				<label>Average Mark</label>
+				<input th:field="*{marks}" type="number" class="form-control" placeholder="Average Mark">
+				<i th:if="${#fields.hasErrors('marks')}" th:errors="*{marks}" class="form-text"></i>
+			</div>
+
+			<div class="form-group">
+				<label>Gender</label><br>
+				<div class="form-check form-check-inline">
+					<input th:field="*{gender}" th:value="true" type="radio" class="form-check-input" id="male">
+					<label class="form-check-label" for="male">Male</label>
+				</div>
+				<div class="form-check form-check-inline">
+					<input th:field="*{gender}" th:value="false" type="radio" class="form-check-input" id="female">
+					<label class="form-check-label" for="female">Female</label>
+				</div>
+				<i th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}" class="form-text"></i>
+			</div>
+
+			<div class="form-group">
+				<label>Country</label>
+				<select th:field="*{country}" class="form-control">
+					<option value="VN">Việt Nam</option>
+					<option value="US">United States</option>
+				</select>
+				<i th:if="${#fields.hasErrors('country')}" th:errors="*{country}" class="form-text"></i>
+			</div>
+
+			<div class="d-flex justify-content-between">
+				<button th:formaction="@{/student/create}" class="btn btn-primary">Create</button>
+				<button th:formaction="@{|/student/update/${key}|}" class="btn btn-success">Update</button>
+				<button th:formaction="@{|/student/del/${key}|}" class="btn btn-danger">Delete</button>
+				<button th:formaction="@{/student/index}" class="btn btn-secondary">Reset</button>
+			</div>
+		</form>
+	</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+</body>
+</html>
